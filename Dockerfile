@@ -16,4 +16,5 @@ RUN dotnet publish --no-restore -c Release -o /app
 FROM base as final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "auth.microsb.net.dll"]
+
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet auth.microsb.net.dll
