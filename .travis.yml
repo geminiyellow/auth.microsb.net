@@ -1,0 +1,29 @@
+language: csharp
+sudo: required
+dist: trusty
+mono: none
+dotnet: 2.1.4
+
+services:
+  - docker
+
+# https://docs.travis-ci.com/user/docker#Installing-a-newer-Docker-version
+before_install:
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  - sudo apt-get update
+  - sudo apt-get -y install docker-ce
+  - docker -v
+
+  - docker build --target integrationer -t auth.microsb.net:integration .
+
+script:
+  - docker run --rm auth.microsb.net:integration
+
+after_success:
+  - docker --version
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u _ -p "$HEROKU_TOKEN" registry.heroku.com;
+    docker build -t registry.heroku.com/auth-microsb-net/web .;
+    docker push registry.heroku.com/auth-microsb-net/web;
+    fi
