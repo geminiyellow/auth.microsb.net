@@ -5,9 +5,8 @@ const merge = require('webpack-merge');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const nonShakableModules = [
-  'jquery',
-  'bootstrap/dist/css/bootstrap.css',
-  'bootstrap/dist/js/bootstrap.js',
+  'material-components-web/dist/material-components-web.css',
+  'material-components-web/dist/material-components-web.js',
 ];
 
 module.exports = (__dirname) => {
