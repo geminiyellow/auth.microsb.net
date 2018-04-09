@@ -19,6 +19,7 @@
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"/>-->
     <!--    <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true"/>-->
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" >  
     <link rel="stylesheet" href="~/dist/@WebpackOptions.BundleCss" asp-append-version="true"/>
   </environment>
 </head>
@@ -49,9 +50,11 @@
               integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
   </script>-->
   <!--  <script src="~/js/site.min.js" asp-append-version="true"></script>-->
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
   <script src="~/dist/@WebpackOptions.Polyfills" asp-append-version="true"></script>
   <script src="~/dist/@WebpackOptions.BundleJs" asp-append-version="true"></script>
 </environment>
+<script>window.mdc.autoInit();</script>        
 @RenderSection("Scripts", required: false)
 </body>
 </html>
